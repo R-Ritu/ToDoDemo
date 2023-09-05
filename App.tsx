@@ -1,14 +1,22 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import ToDoApp from './src'; // Replace with your main app component
-import store from './src/redux/store';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, Suspense} from 'react';
+import 'react-native-gesture-handler';
+import BuckOneApp from './src';
+import SplashScreen from 'react-native-splash-screen';
+import Loader from './src/components/Loader';
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
-    <Provider store={store}>
-      <ToDoApp />
-    </Provider>
+      <Suspense fallback={Loader}>
+        <BuckOneApp />
+      </Suspense>
   );
+  <BuckOneApp />;
 };
 
 export default App;
+
+const styles = StyleSheet.create({});
